@@ -2,7 +2,7 @@ version: '3'
 
 services:
     survey-mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         restart: always
         container_name: survey-mysql
         env_file:
@@ -75,4 +75,4 @@ services:
           - "survey-mysql:mysql_db"
           - "survey-redis:redis_db"
           - "survey-rabbitmq:rabbitmq_host"
-        command: celery worker -A app_survey --queues surveys,stats --loglevel INFO
+        command: celery -A app_survey worker --queues surveys,stats --loglevel INFO
